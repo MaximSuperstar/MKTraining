@@ -80,6 +80,7 @@
     <Compile Include="other\Square.cs" />
     <Compile Include="tests\ContactCreationTests.cs" />
     <Compile Include="model\InitContactData.cs" />
+    <Compile Include="tests\GroupModificationTests.cs" />
     <Compile Include="tests\GroupRemovalTests.cs" />
     <Compile Include="tests\TestBase.cs" />
   </ItemGroup>

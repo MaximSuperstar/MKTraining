@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         {}
         public void InitContactCreation(InitContactData icd)
         {
-            manager.navigator.GoToAccountPage();
+            manager.Navigators.GoToAccountPage();
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(icd.Firstname);
@@ -36,7 +36,7 @@ namespace WebAddressbookTests
         {
             InitContactCreation(icd);
             SubmitContactCreation();
-            manager.navigator.ReturnHomePage();
+            manager.Navigators.ReturnHomePage();
             return this;
         }
     }

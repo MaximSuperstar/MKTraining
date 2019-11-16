@@ -15,9 +15,7 @@ namespace WebAddressbookTests
             GroupData group = new GroupData("test");
             group.Header = "test middlename";
             group.Footer = "test lastname";            
-            app.group.Create(group);
-
-            //app.
+            app.Groups.Create(group);
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -25,7 +23,7 @@ namespace WebAddressbookTests
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
-            app.group.Create(group);
+            app.Groups.Create(group);
         }
     }
 }

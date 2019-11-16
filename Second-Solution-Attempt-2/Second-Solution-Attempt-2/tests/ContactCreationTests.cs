@@ -15,7 +15,7 @@ namespace WebAddressbookTests
             InitContactData icd = new InitContactData("Kolpakov");
             icd.Firstname = "Maxim2";
             icd.Middlename = "Vladimirovitch";
-            app.contact.Create(icd);
+            app.Contacts.Create(icd);
         }
         [Test]
         public void ShortContactCreationTest()
@@ -23,7 +23,7 @@ namespace WebAddressbookTests
             InitContactData icd = new InitContactData("K");
             icd.Firstname = "M";
             icd.Middlename = "V";            
-            app.contact.Create(icd);           
+            app.Contacts.Create(icd);           
         }
     }
 }

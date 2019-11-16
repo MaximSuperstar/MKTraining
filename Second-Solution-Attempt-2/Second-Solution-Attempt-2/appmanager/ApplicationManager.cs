@@ -37,10 +37,11 @@ namespace WebAddressbookTests
                 return driver;
             }
         }
-        public LoginHelper auth { get { return loginHelper; } }
-        public NavigationHelper navigator { get { return navigationHelper; } }
-        public ContactHelper contact { get { return contactHelper; } }
-        public GroupHelper group { get { return groupHelper; } }
+        public LoginHelper Auth { get { return loginHelper; } }
+        public NavigationHelper Navigators { get { return navigationHelper; } }
+        public ContactHelper Contacts { get { return contactHelper; } }
+        public GroupHelper Groups { get { return groupHelper; } }
+        
         //------Method Stop
         public void Stop()
         {

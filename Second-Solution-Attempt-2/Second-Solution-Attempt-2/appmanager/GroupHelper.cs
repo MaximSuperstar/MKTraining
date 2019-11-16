@@ -17,18 +17,36 @@ namespace WebAddressbookTests
 
         public GroupHelper Create(GroupData group)
         {
-            manager.navigator.GoToGroupsPage();
+            manager.Navigators.GoToGroupsPage();
             InitGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
-            manager.navigator.GoToGroupsPage();
+            manager.Navigators.GoToGroupsPage();
             return this;
         }
+
+        public GroupHelper Modify(int index, GroupData group)
+        {
+            manager.Navigators.GoToGroupsPage();
+            SelectGroup(index);
+            driver.FindElement(By.Name("edit")).Click();
+            FillGroupForm(group);
+            UpdateGroupCreation();
+            manager.Navigators.GoToGroupsPage();
+            return this;
+        }
+
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
             return this;
-        }       
+        }
+
+        public GroupHelper UpdateGroupCreation()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
 
         public GroupHelper InitGroupCreation()
         {
@@ -37,7 +55,7 @@ namespace WebAddressbookTests
         }
         public GroupHelper SelectGroup(int index)
         {
-            manager.navigator.GoToGroupsPage();
+            manager.Navigators.GoToGroupsPage();
             driver.FindElement(By.XPath("(.//input[@name='selected[]'])[" + index + "]")).Click();            
             return this;
         }
@@ -54,12 +72,13 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
             return this;
         }
+
         public GroupHelper RemoveGroup()
         {
             SelectGroup(1);
             driver.FindElement(By.Name("delete")).Click();
-            manager.navigator.GoToGroupsPage();
-            manager.navigator.ReturnHomePage();
+            manager.Navigators.GoToGroupsPage();
+            manager.Navigators.ReturnHomePage();
             return this;
         }
     }
