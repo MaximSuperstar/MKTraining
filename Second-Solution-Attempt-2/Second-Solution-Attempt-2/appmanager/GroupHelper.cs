@@ -25,13 +25,13 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Modify(int index, GroupData group)
+        public GroupHelper Groups_Modify(int index, GroupData group)
         {
             manager.Navigators.GoToGroupsPage();
             SelectGroup(index);
             driver.FindElement(By.Name("edit")).Click();
             FillGroupForm(group);
-            UpdateGroupCreation();
+            GroupUpdate();
             manager.Navigators.GoToGroupsPage();
             return this;
         }
@@ -42,7 +42,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper UpdateGroupCreation()
+        public GroupHelper GroupUpdate()
         {
             driver.FindElement(By.Name("update")).Click();
             return this;
