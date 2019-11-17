@@ -21,16 +21,9 @@ namespace WebAddressbookTests
         public void InitContactCreation(InitContactData icd)
         {
             manager.Navigators.GoToAccountPage();
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(icd.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(icd.Middlename);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(icd.Lastename);            
+            TypeText(By.Name("firstname"), icd.Firstname);
+            TypeText(By.Name("middlename"), icd.Firstname);
+            TypeText(By.Name("lastname"), icd.Firstname);
         }
 
         public ContactHelper SelectContact(string index)

@@ -19,8 +19,9 @@ namespace WebAddressbookTests
 
         //protected ApplicationManager driver3;
         protected string baseURL;
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        public ApplicationManager()
+        private ApplicationManager()
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook/";
@@ -28,6 +29,28 @@ namespace WebAddressbookTests
             navigationHelper = new NavigationHelper(this, baseURL);
             contactHelper = new ContactHelper(this);
             groupHelper = new GroupHelper(this);            
+        }
+        //destructor
+        ~ApplicationManager()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+
+        }
+        //static method
+        public static ApplicationManager GetInstance()
+        {
+            if (! app.IsValueCreated)
+            {
+                app.Value = new ApplicationManager();
+            }
+            return app.Value; 
         }
         //-----properties
         public IWebDriver Driver
@@ -41,18 +64,5 @@ namespace WebAddressbookTests
         public NavigationHelper Navigators { get { return navigationHelper; } }
         public ContactHelper Contacts { get { return contactHelper; } }
         public GroupHelper Groups { get { return groupHelper; } }
-        
-        //------Method Stop
-        public void Stop()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-        }
     }
 }

@@ -37,7 +37,7 @@ namespace WebAddressbookTests
                 middlename = value;
             }
         }
-        public string Lastename
+        public string Lastname
         {
             get
             {

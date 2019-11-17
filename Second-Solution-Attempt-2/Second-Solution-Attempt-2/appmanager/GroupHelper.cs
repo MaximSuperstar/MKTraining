@@ -61,24 +61,19 @@ namespace WebAddressbookTests
         }
         public GroupHelper FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            TypeText(By.Name("group_name"), group.Name);
+            TypeText(By.Name("group_header"), group.Name);
+            TypeText(By.Name("group_footer"), group.Name);
             return this;
         }
 
-        public GroupHelper RemoveGroup()
+        public GroupHelper RemoveGroup(int index)
         {
-            SelectGroup(1);
+            SelectGroup(index);
             driver.FindElement(By.Name("delete")).Click();
             manager.Navigators.GoToGroupsPage();
             manager.Navigators.ReturnHomePage();
+            System.Console.Out.Write("Group number "+index+" was removed");
             return this;
         }
     }

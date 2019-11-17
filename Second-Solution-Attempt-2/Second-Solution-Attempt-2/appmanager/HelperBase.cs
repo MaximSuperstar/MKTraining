@@ -19,5 +19,14 @@ namespace WebAddressbookTests
             this.manager = manager;
             driver = manager.Driver;
         }
+        protected void TypeText(By locator, String text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Click();
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }       
+        }
     }
 }
