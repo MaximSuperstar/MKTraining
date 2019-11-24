@@ -26,9 +26,11 @@ namespace WebAddressbookTests
             TypeText(By.Name("lastname"), icd.Firstname);
         }
 
+
+
         public ContactHelper SelectContact(string index)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "]/td/input")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
 
@@ -47,11 +49,26 @@ namespace WebAddressbookTests
         {
             manager.Navigators.OpenHomePage();
             SelectContact(index);
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).Click();
             InitContactCreation(icd_modified);
             SubmitContactCreation();
             manager.Navigators.ReturnHomePage();
             return this;
+        }
+
+        public bool Contact_ModifyChecker()
+        {
+            manager.Navigators.OpenHomePage();
+            if (IsElementPresent(By.Name("selected[]")))
+            {
+                Console.WriteLine("Contact_ModifyChecker -> contact was found");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Contact_ModifyChecker -> contact was not found");
+                return false;
+            }
         }
         public ContactHelper RemoveContact(string index)
         {

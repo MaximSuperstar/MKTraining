@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
+using System.Threading;
+using NUnit.Framework;
 
 namespace WebAddressbookTests
 {
@@ -25,15 +28,30 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Groups_Modify(int index, GroupData group)
+
+
+        public GroupHelper Groups_Modify(string groupName, GroupData group)
         {
-            manager.Navigators.GoToGroupsPage();
-            SelectGroup(index);
+            manager.Navigators.GoToGroupsPage(); 
+            SelectGroup("selected[]");
             driver.FindElement(By.Name("edit")).Click();
             FillGroupForm(group);
             GroupUpdate();
             manager.Navigators.GoToGroupsPage();
             return this;
+        }
+
+        public bool Groups_ModifyChecker()
+        {
+            manager.Navigators.GoToGroupsPage();
+            if (IsElementPresent(By.Name("selected[]")))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
 
         public GroupHelper SubmitGroupCreation()
@@ -53,10 +71,10 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
-        public GroupHelper SelectGroup(int index)
+        public GroupHelper SelectGroup(string groupName)
         {
             manager.Navigators.GoToGroupsPage();
-            driver.FindElement(By.XPath("(.//input[@name='selected[]'])[" + index + "]")).Click();            
+            driver.FindElement(By.Name("selected[]")).Click();
             return this;
         }
         public GroupHelper FillGroupForm(GroupData group)
@@ -67,13 +85,12 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper RemoveGroup(int index)
+        public GroupHelper RemoveGroup(string groupName)
         {
-            SelectGroup(index);
+            SelectGroup(groupName);
             driver.FindElement(By.Name("delete")).Click();
             manager.Navigators.GoToGroupsPage();
             manager.Navigators.ReturnHomePage();
-            System.Console.Out.Write("Group number "+index+" was removed");
             return this;
         }
     }
