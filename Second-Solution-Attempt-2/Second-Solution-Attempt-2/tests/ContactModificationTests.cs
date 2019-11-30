@@ -23,7 +23,6 @@ namespace WebAddressbookTests
                 contact_for_modification.Firstname = "IVAN";
                 contact_for_modification.Middlename = "IVANOVICH";
                 app.Contacts.Create(contact_for_modification);
-                app.Contacts.Contacts_Modify("selected[]", icd_modified);
             }
 
             app.Contacts.Contacts_Modify("selected[]", icd_modified);

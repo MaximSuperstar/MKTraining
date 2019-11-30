@@ -18,7 +18,6 @@ namespace WebAddressbookTests
                 contact_for_removal.Firstname = "IVAN";
                 contact_for_removal.Middlename = "IVANOVICH";
                 app.Contacts.Create(contact_for_removal);
-                app.Contacts.RemoveContact("selected[]");
             }
             app.Contacts.RemoveContact("selected[]");
         }

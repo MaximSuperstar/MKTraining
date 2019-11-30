@@ -18,7 +18,6 @@ namespace WebAddressbookTests
                 group_for_removal.Header = "group_for_modification";
                 group_for_removal.Footer = "group_for_modification";
                 app.Groups.Create(group_for_removal);
-                app.Groups.RemoveGroup("selected[]");
             }
 
             app.Groups.RemoveGroup("selected[]");

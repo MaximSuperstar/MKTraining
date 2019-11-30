@@ -22,7 +22,6 @@ namespace WebAddressbookTests
                 group_for_modification.Header = "group_for_modification";
                 group_for_modification.Footer = "group_for_modification";
                 app.Groups.Create(group_for_modification);
-                app.Groups.Groups_Modify("selected[]", group_modificated);
             }
 
             app.Groups.Groups_Modify("selected[]", group_modificated);
