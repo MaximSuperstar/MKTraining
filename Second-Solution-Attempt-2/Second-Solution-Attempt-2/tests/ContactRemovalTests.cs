@@ -12,20 +12,15 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            if (app.Contacts.Contact_ModifyChecker())
+            if (!app.Contacts.Contact_ModifyChecker())
             {
-                app.Contacts.RemoveContact("selected[]");
-            }
-
-            else
-            {                
                 InitContactData contact_for_removal = new InitContactData("IVANOV");
                 contact_for_removal.Firstname = "IVAN";
                 contact_for_removal.Middlename = "IVANOVICH";
                 app.Contacts.Create(contact_for_removal);
                 app.Contacts.RemoveContact("selected[]");
-                Console.WriteLine("ContactRemovalTest -> Contact is removed");
             }
+            app.Contacts.RemoveContact("selected[]");
         }
     }
 }

@@ -17,12 +17,7 @@ namespace WebAddressbookTests
             icd_modified.Middlename = "V_Modificated";
             
 
-            if (app.Contacts.Contact_ModifyChecker())
-            {
-                app.Contacts.Contacts_Modify("selected[]", icd_modified);
-            }
-
-            else
+            if (!app.Contacts.Contact_ModifyChecker())
             {
                 InitContactData contact_for_modification = new InitContactData("IVANOV");
                 contact_for_modification.Firstname = "IVAN";
@@ -30,6 +25,8 @@ namespace WebAddressbookTests
                 app.Contacts.Create(contact_for_modification);
                 app.Contacts.Contacts_Modify("selected[]", icd_modified);
             }
+
+            app.Contacts.Contacts_Modify("selected[]", icd_modified);
         }
     }
 }

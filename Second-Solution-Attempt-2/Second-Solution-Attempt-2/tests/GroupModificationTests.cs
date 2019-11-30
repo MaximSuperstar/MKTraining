@@ -16,19 +16,16 @@ namespace WebAddressbookTests
             group_modificated.Header = "test middlename_Modificated";
             group_modificated.Footer = "test lastname_Modificated";
 
-            if (app.Groups.Groups_ModifyChecker())
-            {
-                app.Groups.Groups_Modify("selected[]", group_modificated);
-            }
-
-            else
+            if (!app.Groups.Groups_ModifyChecker())
             {
                 GroupData group_for_modification = new GroupData("");
                 group_for_modification.Header = "group_for_modification";
                 group_for_modification.Footer = "group_for_modification";
                 app.Groups.Create(group_for_modification);
                 app.Groups.Groups_Modify("selected[]", group_modificated);
-            }            
+            }
+
+            app.Groups.Groups_Modify("selected[]", group_modificated);
         }
     }
 }
