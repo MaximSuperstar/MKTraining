@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -19,8 +20,11 @@ namespace WebAddressbookTests
                 group_for_removal.Footer = "group_for_modification";
                 app.Groups.Create(group_for_removal);
             }
-
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
             app.Groups.RemoveGroup("selected[]");
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
         }       
     }
 }

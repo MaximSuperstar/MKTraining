@@ -41,6 +41,21 @@ namespace WebAddressbookTests
             return this;
         }
 
+        //GetGroupsList() method returns a list of groups:
+        public List<GroupData> GetGroupsList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigators.GoToGroupsPage();
+            driver.FindElements(By.CssSelector("span.group"));
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                GroupData group = new GroupData(element.Text);
+                groups.Add(group);
+            }
+            return groups;
+        }
+
         public bool Groups_ModifyChecker()
         {
             manager.Navigators.GoToGroupsPage();
@@ -80,8 +95,8 @@ namespace WebAddressbookTests
         public GroupHelper FillGroupForm(GroupData group)
         {
             TypeText(By.Name("group_name"), group.Name);
-            TypeText(By.Name("group_header"), group.Name);
-            TypeText(By.Name("group_footer"), group.Name);
+            TypeText(By.Name("group_header"), group.Header);
+            TypeText(By.Name("group_footer"), group.Footer);
             return this;
         }
 
