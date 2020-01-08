@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
+using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
@@ -12,9 +14,9 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
-            GroupData group_modificated = new GroupData("test_Modificated");
-            group_modificated.Header = "test middlename_Modificated";
-            group_modificated.Footer = "test lastname_Modificated";
+            GroupData newData = new GroupData("test_Modificated");
+            newData.Header = "test middlename_Modificated";
+            newData.Footer = "test lastname_Modificated";
 
             if (!app.Groups.Groups_ModifyChecker())
             {
@@ -24,7 +26,24 @@ namespace WebAddressbookTests
                 app.Groups.Create(group_for_modification);
             }
 
-            app.Groups.Groups_Modify("selected[]", group_modificated);
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
+            GroupData oldData = oldGroups[0];
+            app.Groups.Groups_Modify("selected[]", newData);
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups.Count, newGroups.Count);
+
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Name, group.Name);
+                }
+            }
         }
     }
 }

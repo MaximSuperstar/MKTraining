@@ -12,7 +12,7 @@ namespace WebAddressbookTests
     public class CyclesExamples
     {
         
-        [Test]
+
         public void CyclesExample()
         {
             IWebDriver driver = new FirefoxDriver();

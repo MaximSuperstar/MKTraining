@@ -33,7 +33,7 @@ namespace WebAddressbookTests
         public GroupHelper Groups_Modify(string groupName, GroupData group)
         {
             manager.Navigators.GoToGroupsPage(); 
-            SelectGroup("selected[]");
+            SelectGroup(groupName);
             driver.FindElement(By.Name("edit")).Click();
             FillGroupForm(group);
             GroupUpdate();
@@ -51,6 +51,8 @@ namespace WebAddressbookTests
             foreach (IWebElement element in elements)
             {
                 GroupData group = new GroupData(element.Text);
+                group.Id = element.FindElement(By.TagName("input")).GetAttribute("value");
+                //group.
                 groups.Add(group);
             }
             return groups;
